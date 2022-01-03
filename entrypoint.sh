@@ -218,4 +218,4 @@ else
 	export _WSREP_NEW_CLUSTER=''
 fi
 
-exec mysqld --wsrep_cluster_name=$CLUSTER_NAME --wsrep-cluster-address="gcomm://$cluster_join" --wsrep_sst_auth="xtrabackup:$XTRABACKUP_PASSWORD" $_WSREP_NEW_CLUSTER $CMDARG
+mysqld --wsrep_cluster_name=$CLUSTER_NAME --wsrep-cluster-address="gcomm://$cluster_join" $_WSREP_NEW_CLUSTER $CMDARG

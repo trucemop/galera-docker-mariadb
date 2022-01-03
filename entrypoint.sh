@@ -199,10 +199,10 @@ fi
 
 echo
 echo >&2 ">> Starting reporting script in the background"
-nohup /report_status.sh root $MYSQL_ROOT_PASSWORD $CLUSTER_NAME $TTL $DISCOVERY_SERVICE &
+nohup /config/config/report_status.sh root $MYSQL_ROOT_PASSWORD $CLUSTER_NAME $TTL $DISCOVERY_SERVICE &
 
 # set IP address based on the primary interface
-sed -i "s|WSREP_NODE_ADDRESS|$ipaddr|g" /etc/my.cnf
+sed -i "s|WSREP_NODE_ADDRESS|$ipaddr|g" /etc/mysql/my.cnf
 
 echo
 echo >&2 ">> Starting mysqld process"

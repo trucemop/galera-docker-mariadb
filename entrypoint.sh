@@ -2,7 +2,7 @@
 set -e
 
 apt-get update
-apt-get install -y jq curl
+apt-get install -y jq curl galera-4
 
 # if command starts with an option, prepend mysqld
 if [ "${1:0:1}" = '-' ]; then

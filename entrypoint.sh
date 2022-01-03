@@ -19,7 +19,10 @@ fi
 	DATADIR="$("mysqld" --verbose --help 2>/dev/null | awk '$1 == "datadir" { print $2; exit }')"
 	echo >&2 "Content of $DATADIR:"
 	ls -al $DATADIR
-
+	if [ ! -s "$DATADIR/grastate.dat" ]; then
+		INITIALIZED=1
+	fi
+	
 function join { local IFS="$1"; shift; echo "$*"; }
 
 if [ -z "$DISCOVERY_SERVICE" ]; then
@@ -94,7 +97,7 @@ else
         cat $TMP
         seqno=$(cat $TMP | tr ' ' "\n" | grep -e '[a-z0-9]*-[a-z0-9]*:[0-9]' | head -1 | cut -d ":" -f 2)
         # if this is a new container, set seqno to 0
-        if [ $INITIALIZED -eq 1 ]; then
+        if [ "$INITIALIZED" -eq 1 ]; then
 		echo >&2 ">> This is a new container, thus setting seqno to 0."
 		seqno=0
 	fi

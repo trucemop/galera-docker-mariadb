@@ -218,4 +218,4 @@ else
 	export _WSREP_NEW_CLUSTER=''
 fi
 
-su - mysql -c 'mariadbd --wsrep-cluster-name=$CLUSTER_NAME --wsrep-cluster-address="gcomm://$cluster_join" $_WSREP_NEW_CLUSTER $CMDARG'
+su - mysql -c 'mariadbd $_WSREP_NEW_CLUSTER --wsrep-cluster-address="gcomm://$cluster_join" $CMDARG'
